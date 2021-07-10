@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:8
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - dbdata:/var/lib/mysql
+    restart: always
+    env_file:
+      - /home/docker/secrets/omeka/mysql.env
+    environment:
+      MYSQL_DATABASE: omeka
+
+  app:
+    build:
+      context: .
+    environment:
+      TZ: ${APP_TZ}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      default:
+        ipv4_address: ${APP_IPV4}
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: ${APP_NETWORK}
+
+volumes:
+  dbdata:
