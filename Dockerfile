@@ -34,6 +34,10 @@ RUN set -ex \
     && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex \
+    && apt-get update \
+    && apt-get install -y unzip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
     && curl -sRL https://github.com/omeka/omeka-s/releases/download/v3.0.2/omeka-s-3.0.2.zip \
        -o /var/www/omeka-s.zip \
     && unzip /var/www/omeka-s.zip -d /var/www/ \
