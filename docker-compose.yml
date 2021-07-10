@@ -9,8 +9,6 @@ services:
     restart: always
     env_file:
       - /home/docker/secrets/omeka/mysql.env
-    environment:
-      MYSQL_DATABASE: omeka
 
   app:
     build:
