@@ -1,1 +1,3 @@
-database.ini
+/.env
+/database.ini
+/mysql.env
