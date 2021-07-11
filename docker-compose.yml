@@ -11,8 +11,11 @@ services:
       - /home/docker/secrets/omeka/mysql.env
 
   app:
+    depends_on:
+      - db
     build:
       context: .
+    restart: always
     environment:
       TZ: ${APP_TZ}
     volumes:
@@ -29,3 +32,4 @@ networks:
 
 volumes:
   dbdata:
+

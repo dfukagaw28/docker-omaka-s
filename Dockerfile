@@ -1,4 +1,4 @@
-FROM php:8-apache-buster
+FROM php:7-apache-buster
 
 LABEL org.opencontainers.image.source https://github.com/dfukagaw28/docker-omaka-s
 
@@ -37,12 +37,32 @@ RUN set -ex \
     && apt-get update \
     && apt-get install -y unzip \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN set -ex \
     && curl -sRL https://github.com/omeka/omeka-s/releases/download/v3.0.2/omeka-s-3.0.2.zip \
        -o /var/www/omeka-s.zip \
     && unzip /var/www/omeka-s.zip -d /var/www/ \
+    && rm -f /var/www/omeka-s.zip \
     && rm -rf /var/www/html \
     && mv /var/www/omeka-s /var/www/html \
     && chown -R www-data:www-data /var/www/html
 
 COPY ./database.ini /var/www/html/config/database.ini
+
+RUN set -ex \
+    && curl -sRL https://github.com/Daniel-KM/Omeka-S-module-IiifServer/releases/download/3.6.3.3/IiifServer-3.6.3.3.zip \
+       -o /var/www/IiifServer.zip \
+    && unzip /var/www/IiifServer.zip -d /var/www/html/modules/ \
+    && rm -f /var/www/IiifServer.zip
+
+RUN set -ex \
+    && apt-get update \
+    && apt-get install -y libvips-tools \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && curl -sRL https://github.com/Daniel-KM/Omeka-S-module-ImageServer/releases/download/3.6.6.3/ImageServer-3.6.6.3.zip \
+       -o /var/www/ImageServer.zip \
+    && unzip /var/www/ImageServer.zip -d /var/www/html/modules/ \
+    && rm -f /var/www/ImageServer.zip
+
