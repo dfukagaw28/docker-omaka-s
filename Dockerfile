@@ -66,3 +66,5 @@ RUN set -ex \
     && unzip /var/www/ImageServer.zip -d /var/www/html/modules/ \
     && rm -f /var/www/ImageServer.zip
 
+COPY ./php.ini /usr/local/etc/php/conf.d/omeka.ini
+
