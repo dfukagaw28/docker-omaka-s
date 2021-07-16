@@ -68,3 +68,32 @@ RUN set -ex \
 
 COPY ./php.ini /usr/local/etc/php/conf.d/omeka.ini
 
+RUN set -ex \
+    && apt-get update \
+    && apt-get install -y imagemagick \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN set -ex \
+    && curl -sRL https://github.com/Daniel-KM/Omeka-S-module-Generic/releases/download/3.3.28/Generic-3.3.28.zip \
+       -o /var/www/Generic.zip \
+    && unzip /var/www/Generic.zip -d /var/www/html/modules/ \
+    && rm -f /var/www/Generic.zip
+
+RUN set -ex \
+    && curl -sRL https://github.com/Daniel-KM/Omeka-S-module-CleanUrl/releases/download/3.16.4.3/CleanUrl-3.16.4.3.zip \
+       -o /var/www/CleanUrl.zip \
+    && unzip /var/www/CleanUrl.zip -d /var/www/html/modules/ \
+    && rm -f /var/www/CleanUrl.zip
+
+RUN set -ex \
+    && curl -sRL https://github.com/Daniel-KM/Omeka-S-module-UniversalViewer/releases/download/3.6.4.4/UniversalViewer-3.6.4.4.zip \
+       -o /var/www/UniversalViewer.zip \
+    && unzip /var/www/UniversalViewer.zip -d /var/www/html/modules/ \
+    && rm -f /var/www/UniversalViewer.zip
+
+COPY ./.htaccess /var/www/html/
+
+
+
+
