@@ -6,6 +6,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - dbdata:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
     restart: always
     env_file:
       - /home/docker/secrets/omeka/mysql.env
