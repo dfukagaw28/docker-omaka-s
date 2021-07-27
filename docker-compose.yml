@@ -27,6 +27,20 @@ services:
       default:
         ipv4_address: ${APP_IPV4}
 
+  pma:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    env_file:
+      - /home/docker/secrets/omeka/phpmyadmin.env
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      default:
+        ipv4_address: ${PMA_IPV4}
+
 networks:
   default:
     ipam:
