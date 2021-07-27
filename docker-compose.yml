@@ -21,6 +21,8 @@ services:
       TZ: ${APP_TZ}
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - omekasconfig:/var/www/html/config
+      - omekasfiles:/var/www/html/files
     networks:
       default:
         ipv4_address: ${APP_IPV4}
@@ -33,4 +35,6 @@ networks:
 
 volumes:
   dbdata:
+  omekasconfig:
+  omekasfiles:
 
