@@ -92,8 +92,12 @@ RUN set -ex \
     && unzip /var/www/UniversalViewer.zip -d /var/www/html/modules/ \
     && rm -f /var/www/UniversalViewer.zip
 
+RUN set -ex \
+    && chown -R www-data:www-data /var/www/html/modules
+
 COPY ./.htaccess /var/www/html/
 
-
-
+RUN set -ex \
+    && chown -R www-data:www-data /var/www/html/config \
+    && chown -R www-data:www-data /var/www/html/.htaccess
 
