@@ -1,6 +1,6 @@
-FROM php:7-apache-buster
+FROM php:7-apache-bullseye
 
-LABEL org.opencontainers.image.source https://github.com/dfukagaw28/docker-omaka-s
+LABEL org.opencontainers.image.source https://github.com/dfukagaw28/docker-omeka-s
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -40,7 +40,7 @@ RUN set -ex \
     && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex \
-    && curl -sRL https://github.com/omeka/omeka-s/releases/download/v3.0.2/omeka-s-3.0.2.zip \
+    && curl -sRL https://github.com/omeka/omeka-s/releases/download/v3.1.1/omeka-s-3.1.1.zip \
        -o /var/www/omeka-s.zip \
     && unzip /var/www/omeka-s.zip -d /var/www/ \
     && rm -f /var/www/omeka-s.zip \
