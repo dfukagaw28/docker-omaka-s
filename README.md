@@ -1,1 +1,1 @@
-# docker-omaka-s
+# docker-omeka-s
