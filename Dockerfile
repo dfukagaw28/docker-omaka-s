@@ -120,6 +120,22 @@ RUN set -ex \
     && unzip /var/www/Mirador.zip -d /var/www/html/modules/ \
     && rm -f /var/www/Mirador.zip
 
+## Omeka-S-module-Log
+## [2022-01-05] v3.3.12.14
+RUN set -ex \
+    && curl -sRL https://github.com/Daniel-KM/Omeka-S-module-Log/releases/download/3.3.12.14/Log-3.3.12.14.zip \
+       -o /var/www/Log.zip \
+    && unzip /var/www/Log.zip -d /var/www/html/modules/ \
+    && rm -f /var/www/Log.zip
+
+## Omeka-S-module-BulkImport
+## [2022-02-14] v3.3.31
+RUN set -ex \
+    && curl -sRL https://github.com/Daniel-KM/Omeka-S-module-BulkImport/releases/download/3.3.31/BulkImport-3.3.31.zip \
+       -o /var/www/BulkImport.zip \
+    && unzip /var/www/BulkImport.zip -d /var/www/html/modules/ \
+    && rm -f /var/www/BulkImport.zip
+
 RUN set -ex \
     && chown -R www-data:www-data /var/www/html/modules
 
